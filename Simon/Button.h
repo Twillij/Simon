@@ -25,6 +25,8 @@ public:
 
 	char text[20];
 
+	//bool mouseOver = false;
+
 	Texture* colour; // the colour for the button
 	Texture* litColour; // lit up colour for the button
 

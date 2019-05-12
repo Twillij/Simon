@@ -20,10 +20,17 @@ bool SimonApp::startup() {
 	// the following path would be used instead: "./font/consolas.ttf"
 	m_font = new aie::Font("../bin/font/ARCADE.ttf", 32);
 	
-	ts = new TitleScreen();
-	currentState = ts;
-	s.GenButtons();
-	s.GenSeries();
+	title = new TitleScreen();
+	play = new PlayState();
+	pause = new PauseState();
+	hiScore = new LeaderBoard();
+
+	title->GetStates(title, play, pause, hiScore);
+
+	currentState = title;
+
+	//s.GenButtons();
+	//s.GenSeries();
 	//s.memory->Print();
 
 	return true;
@@ -34,7 +41,10 @@ void SimonApp::shutdown() {
 	delete m_font;
 	delete m_2dRenderer;
 
-	delete ts;
+	delete title;
+	delete play;
+	delete pause;
+	delete hiScore;
 }
 
 void SimonApp::update(float deltaTime) {
@@ -42,7 +52,7 @@ void SimonApp::update(float deltaTime) {
 	// input example
 	aie::Input* input = aie::Input::getInstance();
 
-	// currentState->update();
+	currentState->Update(&currentState);
 
 	// exit the application
 	if (input->isKeyDown(aie::INPUT_KEY_ESCAPE))
@@ -61,21 +71,7 @@ void SimonApp::draw() {
 	//m_2dRenderer->drawSprite(m_croissant, 50 + i * xInc, 50 + j * yInc, xInc, yInc, 0, 0, 0, 0);
 	//m_2dRenderer->drawSprite(simon->button[0]->colour, 100, 100);
 	
-	ts->DrawScreen(m_2dRenderer, m_font);
-
-	/*m_2dRenderer->drawSprite(s.button[0]->colour, 768, 512);
-	m_2dRenderer->drawSprite(s.button[1]->colour, 768, 256);
-	m_2dRenderer->drawSprite(s.button[2]->colour, 512, 256);
-	m_2dRenderer->drawSprite(s.button[3]->colour, 512, 512);
-
-	if (s.button[0]->AABBCollision())
-		m_2dRenderer->drawSprite(s.button[0]->litColour, 768, 512);
-	else if (s.button[1]->AABBCollision())
-		m_2dRenderer->drawSprite(s.button[1]->litColour, 768, 256);
-	else if (s.button[2]->AABBCollision())
-		m_2dRenderer->drawSprite(s.button[2]->litColour, 512, 256);
-	else if (s.button[3]->AABBCollision())
-		m_2dRenderer->drawSprite(s.button[3]->litColour, 512, 512);*/
+	currentState->Draw(m_2dRenderer, m_font);
 	
 	// output some text, uses the last used colour
 	m_2dRenderer->drawText(m_font, "Press ESC to quit", 0, 0);

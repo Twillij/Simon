@@ -4,6 +4,7 @@
 
 Simon::Simon()
 {
+	GenButtons();
 }
 
 

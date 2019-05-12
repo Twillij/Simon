@@ -11,7 +11,9 @@ public:
 	GameState();
 	~GameState();
 
-	void DrawScreen();
+	virtual void Update(GameState** currentState);
 
-	void Update(Button* b); // go to gamestate* next
+	virtual void Draw(Renderer2D* r2d, Font* font);
+
+	virtual void GetStates(GameState* titleScreen, GameState* playState, GameState* pauseState, GameState* leaderBoard);
 };

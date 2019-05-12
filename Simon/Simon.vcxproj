@@ -165,8 +165,10 @@
   <ItemGroup>
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="LeaderBoard.cpp" />
     <ClCompile Include="LinkedList.cpp" />
     <ClCompile Include="Node.cpp" />
+    <ClCompile Include="PauseState.cpp" />
     <ClCompile Include="PlayState.cpp" />
     <ClCompile Include="Simon.cpp" />
     <ClCompile Include="SimonApp.cpp" />
@@ -176,8 +178,10 @@
   <ItemGroup>
     <ClInclude Include="Button.h" />
     <ClInclude Include="GameState.h" />
+    <ClInclude Include="LeaderBoard.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="Node.h" />
+    <ClInclude Include="PauseState.h" />
     <ClInclude Include="PlayState.h" />
     <ClInclude Include="Simon.h" />
     <ClInclude Include="SimonApp.h" />

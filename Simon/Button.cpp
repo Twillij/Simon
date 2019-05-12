@@ -30,7 +30,6 @@ Button::Button(int b)
 	case 2:
 		colour = new Texture("../bin/textures/red.png");
 		litColour = new Texture("../bin/textures/red_lit.png");
-
 		clickable.posX = 512;
 		clickable.posY = 256;
 		break;
@@ -38,7 +37,6 @@ Button::Button(int b)
 	case 3:
 		colour = new Texture("../bin/textures/yellow.png");
 		litColour = new Texture("../bin/textures/yellow_lit.png");
-
 		clickable.posX = 512;
 		clickable.posY = 512;
 		break;
@@ -104,7 +102,11 @@ bool Button::AABBCollision()
 	GetMousePos();
 
 	if (cursor.posX > left && cursor.posX < right && cursor.posY > bot && cursor.posY < top)
+	{
+		//mouseOver = true;
 		return true;
+	}
 
+	//mouseOver = false;
 	return false;
 }
