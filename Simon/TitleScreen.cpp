@@ -13,13 +13,16 @@ TitleScreen::~TitleScreen()
 	delete scoreButton;
 }
 
-void TitleScreen::Update(GameState** currentState)
+void TitleScreen::Update(GameState ** currentState, float deltaTime)
 {
 	Input* input = input->getInstance();
 	
 	if (playButton->AABBCollision())
 		if (input->wasMouseButtonPressed(0))
+		{
+			play->simon->lose = false;
 			*currentState = play;
+		}
 
 	if (scoreButton->AABBCollision())
 		if (input->wasMouseButtonPressed(0))
@@ -32,7 +35,7 @@ void TitleScreen::Draw(Renderer2D * r2d, Font * font)
 	scoreButton->Draw(r2d, font);
 }
 
-void TitleScreen::GetStates(GameState * titleScreen, GameState * playState, GameState * pauseState, GameState * leaderBoard)
+void TitleScreen::GetStates(GameState * titleScreen, GameState * autoState, GameState * playState, GameState * pauseState, GameState * leaderBoard)
 {
 	play = playState;
 	hiScore = leaderBoard;

@@ -4,6 +4,7 @@
 #include "Simon.h"
 #include "TitleScreen.h"
 #include "PlayState.h"
+#include "AutoState.h"
 #include "PauseState.h"
 #include "LeaderBoard.h"
 
@@ -24,13 +25,10 @@ protected:
 	aie::Renderer2D*	m_2dRenderer;
 	aie::Font*			m_font;
 
-	//Simon s;
-
 	GameState* currentState;
 	TitleScreen* title;
 	PlayState* play;
+	AutoState* autopilot;
 	PauseState* pause;
 	LeaderBoard* hiScore;
-
-	Button* testb;
 };

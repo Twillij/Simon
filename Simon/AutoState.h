@@ -1,20 +1,16 @@
 #pragma once
 #include "GameState.h"
-#include "Simon.h"
 
-class PlayState : public GameState
+class AutoState : public GameState
 {
 public:
-	PlayState();
-	~PlayState();
+	AutoState();
+	~AutoState();
 
-	char level[10];
+	bool ready = false;
 
-	GameState* title;
-	GameState* autopilot;
-	GameState* pause;
-
-	Button* sequenceButton;
+	GameState* play;
+	Button* phase;
 
 	void Update(GameState** currentState, float deltaTime);
 

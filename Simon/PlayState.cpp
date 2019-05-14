@@ -4,38 +4,108 @@
 PlayState::PlayState()
 {
 	simon = new Simon();
+	sequenceButton = new Button("Start Level", 640, 75, 200, 50);
 }
-
 
 PlayState::~PlayState()
 {
 	delete simon;
+	delete sequenceButton;
 }
 
-void PlayState::Update()
+void PlayState::Update(GameState ** currentState, float deltaTime)
 {
+	Input* input = input->getInstance();
+
+	snprintf(level, 10, "Level: %i", simon->level);
+
+	if (sequenceButton->AABBCollision())
+		if (input->wasMouseButtonPressed(0))
+		{
+			autopilot->simon = simon;
+			simon->GenSeries();
+			simon->currentSequence = 0;
+			*currentState = autopilot;
+		}
+	
+	if (!simon->playMode)
+		return;
+
+	if (simon->button[0]->AABBCollision())
+	{
+		if (input->wasMouseButtonPressed(0))
+		{
+			simon->CheckInput(simon->memory->getArray()[simon->currentSequence], 0);
+		}
+			
+	}
+	else if (simon->button[1]->AABBCollision())
+	{
+		if (input->wasMouseButtonPressed(0))
+		{
+			simon->CheckInput(simon->memory->getArray()[simon->currentSequence], 1);
+		}
+			
+	}
+	else if (simon->button[2]->AABBCollision())
+	{
+		if (input->wasMouseButtonPressed(0))
+		{
+			simon->CheckInput(simon->memory->getArray()[simon->currentSequence], 2);
+		}
+	}
+	else if (simon->button[3]->AABBCollision())
+	{
+		if (input->wasMouseButtonPressed(0))
+		{
+			simon->CheckInput(simon->memory->getArray()[simon->currentSequence], 3);
+		}
+	}
+
+	if (simon->lose)
+		*currentState = title;
+
+	if (simon->currentSequence >= simon->level)
+	{
+		simon->level++;
+		simon->currentSequence = 0;
+		simon->playMode = false;
+
+		for (int i = 0; i < 4; ++i)
+		{
+			simon->button[i]->flash = false;
+		}
+	}
 }
 
 void PlayState::Draw(Renderer2D * r2d, Font * font)
 {
-	if (simon->button)
+	r2d->drawSprite(simon->button[0]->colour, simon->button[0]->clickable.posX, simon->button[0]->clickable.posY);
+	r2d->drawSprite(simon->button[1]->colour, simon->button[1]->clickable.posX, simon->button[1]->clickable.posY);
+	r2d->drawSprite(simon->button[2]->colour, simon->button[2]->clickable.posX, simon->button[2]->clickable.posY);
+	r2d->drawSprite(simon->button[3]->colour, simon->button[3]->clickable.posX, simon->button[3]->clickable.posY);
 
-	r2d->drawSprite(simon->button[0]->colour, 768, 512);
-	r2d->drawSprite(simon->button[1]->colour, 768, 256);
-	r2d->drawSprite(simon->button[2]->colour, 512, 256);
-	r2d->drawSprite(simon->button[3]->colour, 512, 512);
+	r2d->drawText(font, level, 0, 690);
 
-	if (simon->button[0]->AABBCollision())
-		r2d->drawSprite(simon->button[0]->litColour, 768, 512);
-	else if (simon->button[1]->AABBCollision())
-		r2d->drawSprite(simon->button[1]->litColour, 768, 256);
-	else if (simon->button[2]->AABBCollision())
-		r2d->drawSprite(simon->button[2]->litColour, 512, 256);
-	else if (simon->button[3]->AABBCollision())
-		r2d->drawSprite(simon->button[3]->litColour, 512, 512);
+	if (!simon->playMode)
+	{
+		sequenceButton->Draw(r2d, font);
+		return;
+	}
+	
+	if (simon->button[0]->flash)
+		r2d->drawSprite(simon->button[0]->litColour, simon->button[0]->clickable.posX, simon->button[0]->clickable.posY);
+	else if (simon->button[1]->flash)
+		r2d->drawSprite(simon->button[1]->litColour, simon->button[1]->clickable.posX, simon->button[1]->clickable.posY);
+	else if (simon->button[2]->flash)
+		r2d->drawSprite(simon->button[2]->litColour, simon->button[2]->clickable.posX, simon->button[2]->clickable.posY);
+	else if (simon->button[3]->flash)
+		r2d->drawSprite(simon->button[3]->litColour, simon->button[3]->clickable.posX, simon->button[3]->clickable.posY);
 }
 
-void PlayState::GetStates(GameState * titleScreen, GameState * playState, GameState * pauseState, GameState * leaderBoard)
+void PlayState::GetStates(GameState * titleScreen, GameState * autoState, GameState * playState, GameState * pauseState, GameState * leaderBoard)
 {
+	title = titleScreen;
+	autopilot = autoState;
 	pause = pauseState;
 }

@@ -22,16 +22,16 @@ bool SimonApp::startup() {
 	
 	title = new TitleScreen();
 	play = new PlayState();
+	autopilot = new AutoState();
 	pause = new PauseState();
 	hiScore = new LeaderBoard();
 
-	title->GetStates(title, play, pause, hiScore);
+	title->GetStates(title, autopilot, play, pause, hiScore);
+	play->GetStates(title, autopilot, play, pause, hiScore);
+	autopilot->GetStates(title, autopilot, play, pause, hiScore);
+	pause->GetStates(title, autopilot, play, pause, hiScore);
 
 	currentState = title;
-
-	//s.GenButtons();
-	//s.GenSeries();
-	//s.memory->Print();
 
 	return true;
 }
@@ -52,7 +52,7 @@ void SimonApp::update(float deltaTime) {
 	// input example
 	aie::Input* input = aie::Input::getInstance();
 
-	currentState->Update(&currentState);
+	currentState->Update(&currentState, deltaTime);
 
 	// exit the application
 	if (input->isKeyDown(aie::INPUT_KEY_ESCAPE))

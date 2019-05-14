@@ -1,5 +1,5 @@
 #pragma once
-#include "Button.h"
+#include "Simon.h"
 #include <Font.h>
 #include <Renderer2D.h>
 
@@ -11,9 +11,11 @@ public:
 	GameState();
 	~GameState();
 
-	virtual void Update(GameState** currentState);
+	Simon* simon;
+
+	virtual void Update(GameState** currentState, float deltaTime);
 
 	virtual void Draw(Renderer2D* r2d, Font* font);
 
-	virtual void GetStates(GameState* titleScreen, GameState* playState, GameState* pauseState, GameState* leaderBoard);
+	virtual void GetStates(GameState* titleScreen, GameState* autoState, GameState* playState, GameState* pauseState, GameState* leaderBoard);
 };

@@ -103,10 +103,10 @@ bool Button::AABBCollision()
 
 	if (cursor.posX > left && cursor.posX < right && cursor.posY > bot && cursor.posY < top)
 	{
-		//mouseOver = true;
+		flash = true;
 		return true;
 	}
 
-	//mouseOver = false;
+	flash = false;
 	return false;
 }
