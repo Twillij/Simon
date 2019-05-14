@@ -55,8 +55,8 @@ void SimonApp::update(float deltaTime) {
 	currentState->Update(&currentState, deltaTime);
 
 	// exit the application
-	if (input->isKeyDown(aie::INPUT_KEY_ESCAPE))
-		quit();
+	//if (input->isKeyDown(aie::INPUT_KEY_ESCAPE))
+	//	quit();
 }
 
 void SimonApp::draw() {
@@ -74,7 +74,7 @@ void SimonApp::draw() {
 	currentState->Draw(m_2dRenderer, m_font);
 	
 	// output some text, uses the last used colour
-	m_2dRenderer->drawText(m_font, "Press ESC to quit", 0, 0);
+	//m_2dRenderer->drawText(m_font, "Press ESC to quit", 0, 0);
 
 	// done drawing sprites
 	m_2dRenderer->end();

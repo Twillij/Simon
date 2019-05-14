@@ -17,6 +17,9 @@ void PlayState::Update(GameState ** currentState, float deltaTime)
 {
 	Input* input = input->getInstance();
 
+	if (input->wasKeyReleased(INPUT_KEY_ESCAPE))
+		*currentState = pause;
+
 	snprintf(level, 10, "Level: %i", simon->level);
 
 	if (sequenceButton->AABBCollision())
@@ -86,6 +89,7 @@ void PlayState::Draw(Renderer2D * r2d, Font * font)
 	r2d->drawSprite(simon->button[3]->colour, simon->button[3]->clickable.posX, simon->button[3]->clickable.posY);
 
 	r2d->drawText(font, level, 0, 690);
+	r2d->drawText(font, "Press ESC to pause", 0, 0);
 
 	if (!simon->playMode)
 	{

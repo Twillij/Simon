@@ -9,6 +9,9 @@ public:
 	GameState* title;
 	GameState* play;
 	GameState* autopilot;
+
+	Button* resumeButton;
+	Button* quitButton;
 	
 	void Update(GameState** currentState, float deltaTime);
 
