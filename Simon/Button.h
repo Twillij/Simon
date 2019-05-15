@@ -14,7 +14,7 @@ class Button
 public:
 	Button();
 	Button(int b);
-	Button(const char* text, float x, float y, float width, float height);
+	Button(char* text, float x, float y, float width, float height);
 	~Button();
 
 	struct Rectangle
@@ -40,4 +40,6 @@ public:
 	void GetMousePos(); // retrieves mouse position
 
 	bool AABBCollision(); // checks if the mouse is hovering over the button
+
+	void changeText(char * a_text);
 };

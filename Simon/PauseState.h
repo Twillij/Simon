@@ -11,6 +11,7 @@ public:
 	GameState* autopilot;
 
 	Button* resumeButton;
+	Button* titleButton;
 	Button* quitButton;
 	
 	void Update(GameState** currentState, float deltaTime);

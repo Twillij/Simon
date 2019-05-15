@@ -3,18 +3,19 @@
 
 AutoState::AutoState()
 {
-	phase = new Button("Sequence Phase", 640, 360, 1280, 50);
+	//phase = new Button("Sequence Phase", 640, 360, 1280, 50);
 }
 
 AutoState::~AutoState()
 {
+	//delete phase;
 }
 
 void AutoState::Update(GameState ** currentState, float deltaTime)
 {
 	int colour = simon->memory->getArray()[simon->currentSequence];
 	
-	if (simon->timer > 0.4)
+	if (simon->timer > 0.3)
 		simon->button[colour]->flash = true;
 	else
 		simon->button[colour]->flash = false;
@@ -22,7 +23,7 @@ void AutoState::Update(GameState ** currentState, float deltaTime)
 	if (simon->timer <= 0)
 	{
 		simon->currentSequence++;
-		simon->timer = 2;
+		simon->timer = 1.5;
 
 		if (simon->currentSequence == simon->level)
 		{
@@ -37,12 +38,7 @@ void AutoState::Update(GameState ** currentState, float deltaTime)
 }
 
 void AutoState::Draw(Renderer2D * r2d, Font * font)
-{
-	if (!ready)
-	{
-
-	}
-	
+{	
 	r2d->drawSprite(simon->button[0]->colour, simon->button[0]->clickable.posX, simon->button[0]->clickable.posY);
 	r2d->drawSprite(simon->button[1]->colour, simon->button[1]->clickable.posX, simon->button[1]->clickable.posY);
 	r2d->drawSprite(simon->button[2]->colour, simon->button[2]->clickable.posX, simon->button[2]->clickable.posY);

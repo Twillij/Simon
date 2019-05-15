@@ -31,6 +31,8 @@ bool SimonApp::startup() {
 	autopilot->GetStates(title, autopilot, play, pause, hiScore);
 	pause->GetStates(title, autopilot, play, pause, hiScore);
 
+	autopilot->simon = play->simon;
+
 	currentState = title;
 
 	return true;
@@ -43,6 +45,7 @@ void SimonApp::shutdown() {
 
 	delete title;
 	delete play;
+	delete autopilot;
 	delete pause;
 	delete hiScore;
 }
@@ -55,8 +58,8 @@ void SimonApp::update(float deltaTime) {
 	currentState->Update(&currentState, deltaTime);
 
 	// exit the application
-	//if (input->isKeyDown(aie::INPUT_KEY_ESCAPE))
-	//	quit();
+	if (currentState->quitGame)
+		quit();
 }
 
 void SimonApp::draw() {

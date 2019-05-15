@@ -14,9 +14,9 @@ public:
 	bool playMode = false; // true if it's the player's turn
 	bool lose = false;
 
-	int level = 2; // set back to 0 later
+	int level = 0; // set back to 0 later
 
-	float timer = 2;
+	float timer = 1.5;
 
 	Button* button[4]; // holds 4 coloured buttons that flashes
 
@@ -29,5 +29,5 @@ public:
 
 	void CheckInput(int correct, int input); // checks user input against sequence
 
-	void Replay(); // replays the sequence
+	void Reset();
 };

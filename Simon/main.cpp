@@ -1,4 +1,7 @@
 #include "SimonApp.h"
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
 
 int main() {
 
@@ -10,6 +13,8 @@ int main() {
 
 	// deallocation
 	delete app;
+
+	_CrtDumpMemoryLeaks();
 
 	return 0;
 }

@@ -11,7 +11,11 @@ Simon::Simon()
 Simon::~Simon()
 {
 	delete memory;
+
 	//delete[] button;
+
+	for (int i = 0; i < 4; ++i)
+		delete button[i];
 }
 
 void Simon::GenButtons()
@@ -33,12 +37,20 @@ void Simon::GenSeries()
 void Simon::CheckInput(int correct, int input)
 {
 	if (input == correct)
-	{
 		currentSequence++;
-	}
 	else
-	{
 		lose = true;
-		playMode = false;
-	}
+}
+
+void Simon::Reset()
+{
+	playMode = false;
+	lose = false;
+	level = 1;
+	timer = 1.5;
+	memory->Clear();
+	currentSequence = 0;
+
+	for (int i = 0; i < 4; ++i)
+		button[i]->flash = false;
 }

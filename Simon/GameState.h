@@ -13,6 +13,8 @@ public:
 
 	Simon* simon;
 
+	bool quitGame = false;
+
 	virtual void Update(GameState** currentState, float deltaTime);
 
 	virtual void Draw(Renderer2D* r2d, Font* font);

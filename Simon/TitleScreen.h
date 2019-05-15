@@ -12,6 +12,7 @@ public:
 
 	Button* playButton;
 	Button* scoreButton;
+	Button* quitButton;
 
 	void Update(GameState** currentState, float deltaTime);
 

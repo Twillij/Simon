@@ -9,6 +9,7 @@ public:
 	~PlayState();
 
 	char level[10];
+	char correctSequence[20];
 
 	GameState* title;
 	GameState* autopilot;

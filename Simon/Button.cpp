@@ -46,7 +46,7 @@ Button::Button(int b)
 	}
 }
 
-Button::Button(const char * a_text, float x, float y, float width, float height)
+Button::Button(char * a_text, float x, float y, float width, float height)
 {
 	strcpy_s(text, 20, a_text); // store the text that will appear on the button
 
@@ -109,4 +109,9 @@ bool Button::AABBCollision()
 
 	flash = false;
 	return false;
+}
+
+void Button::changeText(char * a_text)
+{
+	strcpy_s(text, 20, a_text);
 }
