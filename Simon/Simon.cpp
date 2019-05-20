@@ -6,15 +6,13 @@ Simon::Simon()
 {
 	memory = new SequenceArray();
 	GenButtons();
-	sequenceButton = new Button("Start Level", 640, 75, 200, 50);
+	sequenceButton = new Button("Start Level", 640, 75, 250, 50);
 }
 
 Simon::~Simon()
 {
 	delete memory;
 	delete sequenceButton;
-
-	//delete[] button;
 
 	for (int i = 0; i < 4; ++i)
 	{

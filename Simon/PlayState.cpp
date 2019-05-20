@@ -98,14 +98,10 @@ void PlayState::Draw(Renderer2D * r2d, Font * font, Font * big_font)
 	r2d->drawText(font, "Press ESC to pause", 0, 0);
 
 	if (simon->currentSequence == simon->level && simon->level != 0)
-	{
 		r2d->drawText(big_font, "Level Clear!", 240, 360);
-	}
 
 	if (simon->wrong)
-	{
 		r2d->drawText(big_font, "Try again!", 300, 360);
-	}
 
 	if (!simon->playMode)
 	{
