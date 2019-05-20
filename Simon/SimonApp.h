@@ -22,13 +22,14 @@ public:
 
 protected:
 
-	aie::Renderer2D*	m_2dRenderer;
-	aie::Font*			m_font;
+	Renderer2D*		m_2dRenderer;
+	Font*			m_font;
+	Font*			big_font;
 
-	GameState* currentState;
-	TitleScreen* title;
-	PlayState* play;
-	AutoState* autopilot;
-	PauseState* pause;
-	LeaderBoard* hiScore;
+	GameState*		currentState;
+	TitleScreen*	title;
+	PlayState*		play;
+	AutoState*		autopilot;
+	PauseState*		pause;
+	LeaderBoard*	hiScore;
 };

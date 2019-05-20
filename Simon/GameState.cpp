@@ -14,7 +14,7 @@ void GameState::Update(GameState ** currentState, float deltaTime)
 {
 }
 
-void GameState::Draw(Renderer2D * r2d, Font * font)
+void GameState::Draw(Renderer2D * r2d, Font * font, Font * big_font)
 {
 }
 

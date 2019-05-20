@@ -6,16 +6,22 @@ Simon::Simon()
 {
 	memory = new SequenceArray();
 	GenButtons();
+	sequenceButton = new Button("Start Level", 640, 75, 200, 50);
 }
 
 Simon::~Simon()
 {
 	delete memory;
+	delete sequenceButton;
 
 	//delete[] button;
 
 	for (int i = 0; i < 4; ++i)
+	{
+		delete button[i]->colour;
+		delete button[i]->litColour;
 		delete button[i];
+	}
 }
 
 void Simon::GenButtons()
@@ -39,17 +45,27 @@ void Simon::CheckInput(int correct, int input)
 	if (input == correct)
 		currentSequence++;
 	else
-		lose = true;
+	{
+		life--;
+		wrong = true;
+		playMode = false;
+		sequenceButton->changeText("Restart Level");
+
+		for (int i = 0; i < 4; ++i)
+			button[i]->flash = false;
+	}
 }
 
 void Simon::Reset()
 {
 	playMode = false;
-	lose = false;
-	level = 1;
-	timer = 1.5;
+	wrong = false;
+	level = 0;
+	life = 3;
+	timer = 1;
 	memory->Clear();
 	currentSequence = 0;
+	sequenceButton->changeText("Start Level");
 
 	for (int i = 0; i < 4; ++i)
 		button[i]->flash = false;

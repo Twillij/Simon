@@ -85,8 +85,8 @@ void Button::GetMousePos()
 {
 	Input* input = Input::getInstance();
 	
-	cursor.width = 1;
-	cursor.height = 1;
+	cursor.width = 1.0f;
+	cursor.height = 1.0f;
 	cursor.posX = input->getMouseX();
 	cursor.posY = input->getMouseY();
 }
@@ -94,10 +94,10 @@ void Button::GetMousePos()
 
 bool Button::AABBCollision()
 {
-	float left = clickable.posX - (clickable.width * 0.5);
-	float right = clickable.posX + (clickable.width * 0.5);
-	float bot = clickable.posY - (clickable.height * 0.5);
-	float top = clickable.posY + (clickable.height * 0.5);
+	float left = clickable.posX - (clickable.width * 0.5f);
+	float right = clickable.posX + (clickable.width * 0.5f);
+	float bot = clickable.posY - (clickable.height * 0.5f);
+	float top = clickable.posY + (clickable.height * 0.5f);
 
 	GetMousePos();
 

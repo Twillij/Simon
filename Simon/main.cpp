@@ -1,6 +1,6 @@
 #include "SimonApp.h"
 #define _CRTDBG_MAP_ALLOC
-#include <stdlib.h>
+#include <cstdlib>
 #include <crtdbg.h>
 
 int main() {

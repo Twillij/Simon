@@ -19,10 +19,10 @@ public:
 
 	struct Rectangle
 	{
-		int posX;
-		int posY;
-		int width;
-		int height;
+		float posX;
+		float posY;
+		float width;
+		float height;
 	};
 
 	char text[20]; // text for the button

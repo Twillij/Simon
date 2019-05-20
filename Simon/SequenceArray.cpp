@@ -25,7 +25,7 @@ SequenceArray::SequenceArray(const SequenceArray &old)
 
 SequenceArray::~SequenceArray()
 {
-	//delete[] arr;
+	delete[] arr;
 }
 
 void SequenceArray::PushBack(int a_value)

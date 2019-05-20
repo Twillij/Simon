@@ -23,14 +23,13 @@ void TitleScreen::Update(GameState ** currentState, float deltaTime)
 	{
 		if (input->wasMouseButtonPressed(0))
 		{
-			play->simon->lose = false;
 			*currentState = play;
 		}
 	}
 	else if (scoreButton->AABBCollision())
 	{
-		if (input->wasMouseButtonPressed(0));
-			//*currentState = hiScore;
+		if (input->wasMouseButtonPressed(0))
+			scoreButton->changeText("SOON TM");
 	}
 	else if (quitButton->AABBCollision())
 	{
@@ -39,8 +38,11 @@ void TitleScreen::Update(GameState ** currentState, float deltaTime)
 	}
 }
 
-void TitleScreen::Draw(Renderer2D * r2d, Font * font)
+void TitleScreen::Draw(Renderer2D * r2d, Font * font, Font * big_font)
 {
+	r2d->setRenderColour(0.8f, 0.8f, 0.0f);
+	r2d->drawText(big_font, "The Simon Game", 180, 480);
+
 	playButton->Draw(r2d, font);
 	scoreButton->Draw(r2d, font);
 	quitButton->Draw(r2d, font);

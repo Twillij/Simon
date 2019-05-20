@@ -26,15 +26,15 @@ void PauseState::Update(GameState ** currentState, float deltaTime)
 	if (resumeButton->AABBCollision())
 	{
 		if (input->wasMouseButtonPressed(0))
-		{
-			simon->Reset();
 			*currentState = play;
-		}
 	}
 	else if (titleButton->AABBCollision())
 	{
 		if (input->wasMouseButtonPressed(0))
+		{
+			simon->Reset();
 			*currentState = title;
+		}
 	}
 	else if (quitButton->AABBCollision())
 	{
@@ -43,7 +43,7 @@ void PauseState::Update(GameState ** currentState, float deltaTime)
 	}
 }
 
-void PauseState::Draw(Renderer2D * r2d, Font * font)
+void PauseState::Draw(Renderer2D * r2d, Font * font, Font * big_font)
 {
 	resumeButton->Draw(r2d, font);
 	titleButton->Draw(r2d, font);
